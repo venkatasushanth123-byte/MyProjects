@@ -1,0 +1,74 @@
+<!-- <h2>Apply Leave</h2>
+<form (ngSubmit)="applyLeave()">
+  <div>
+    <label for="date">Date:</label>
+    <input
+      type="date"
+      id="date"
+      [(ngModel)]="leave.date"
+      name="date"
+      required
+    />
+  </div>
+  <div>
+    <label for="reason">Reason:</label>
+    <input
+      type="text"
+      id="reason"
+      [(ngModel)]="leave.reason"
+      name="reason"
+      required
+    />
+  </div>
+  <button type="submit">Apply</button>
+</form>
+<p *ngIf="message">{{ message }}</p> -->
+
+<div class="form-container">
+  <div class="form-card">
+    <h2>Apply Leave</h2>
+
+    <form (ngSubmit)="applyLeave()" #leaveForm="ngForm">
+      
+      <!-- Date -->
+      <div class="form-group">
+        <label>Date</label>
+        <input
+          type="date"
+          [(ngModel)]="leave.date"
+          name="date"
+          required
+        />
+      </div>
+
+      <!-- Reason -->
+      <div class="form-group">
+        <label>Reason</label>
+        <textarea
+          [(ngModel)]="leave.reason"
+          name="reason"
+          rows="3"
+          placeholder="Enter reason..."
+          required>
+        </textarea>
+      </div>
+
+      <!-- Button -->
+      <button 
+        type="submit" 
+        class="submit-btn"
+        [disabled]="leaveForm.invalid">
+        Apply Leave
+      </button>
+    </form>
+
+    <!-- Message -->
+    <p class="message success" *ngIf="message && message.includes('successfully')">
+      {{ message }}
+    </p>
+
+    <p class="message error" *ngIf="message && message.includes('Error')">
+      {{ message }}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<!-- <h2>Student Dashboard</h2>
+<button routerLink="/apply-leave">Apply Leave</button>
+
+<table *ngIf="leaves.length > 0" border="1">
+  <tr>
+    <th>Date</th>
+    <th>Reason</th>
+    <th>Status</th>
+  </tr>
+  <tr *ngFor="let leave of leaves">
+    <td>{{ leave.date }}</td>
+    <td>{{ leave.reason }}</td>
+    <td>{{ leave.status }}</td>
+  </tr>
+</table>
+
+<p *ngIf="leaves.length === 0">No Leaves Applied</p> -->
+
+<div class="dashboard-container">
+  <!-- Header -->
+  <div class="header">
+    <h2>Student Dashboard</h2>
+    <button class="apply-btn" routerLink="/apply-leave">+ Apply Leave</button>
+  </div>
+
+  <!-- Table Card -->
+  <div class="table-card" *ngIf="leaves.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Reason</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let leave of leaves">
+          <td>{{ leave.date | date: "mediumDate" }}</td>
+          <td>{{ leave.reason }}</td>
+          <td>
+            <span
+              class="status"
+              [ngClass]="{
+                pending: leave.status === 'PENDING',
+                approved: leave.status === 'APPROVED',
+                rejected: leave.status === 'REJECTED',
+              }"
+            >
+              {{ leave.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty" *ngIf="leaves.length === 0">
+    <p>No Leaves Applied</p>
+    <button class="apply-btn" routerLink="/apply-leave">
+      Apply Your First Leave
+    </button>
+  </div>
+</div>

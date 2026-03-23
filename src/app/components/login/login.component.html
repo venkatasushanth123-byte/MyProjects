@@ -1,0 +1,42 @@
+<!-- <h2>Login</h2>
+<form (ngSubmit)="login()">
+    <input type="text" placeholder="Username" [(ngModel)]= "credentials.username" name="username" required>
+    <input type="password" placeholder="password" [(ngModel)]= "credentials.password" name="password" required>
+    <button type="submit">Login</button>
+</form> -->
+
+<div class="login-container">
+  <div class="login-card">
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Login to your account</p>
+
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <!-- Username -->
+      <div class="input-group">
+        <input
+          type="text"
+          placeholder="Username"
+          [(ngModel)]="credentials.username"
+          name="username"
+          required
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="credentials.password"
+          name="password"
+          required
+        />
+      </div>
+
+      <!-- Button -->
+      <button type="submit" class="login-btn" [disabled]="loginForm.invalid">
+        Login
+      </button>
+    </form>
+  </div>
+</div>
